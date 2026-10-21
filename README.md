@@ -29,3 +29,9 @@ Las fotos y productos son muestras. Las bases y condiciones son provisionales y 
 
 REPOSITORIO
 Estos mismos archivos pueden mantenerse en el repositorio del proyecto. Repositorio: https://github.com/equantum-py/limpiarte — rama main.
+
+
+PANEL ADMINISTRATIVO DEMO
+Abrir /admin/ en el mismo dominio. No requiere PHP ni MySQL en esta etapa. Permite agregar, editar, ocultar y eliminar productos, cargar fotos, renombrar categorías y editar WhatsApp, ubicación y horario.
+Los cambios solo persisten en localStorage de ese navegador y dominio; no modifican archivos del servidor ni se comparten entre dispositivos. Recargar la página pública para verlos.
+No tiene autenticación: es una demostración con datos ficticios, no un administrador seguro de producción. La siguiente etapa necesita PHP, MySQL, autenticación y permisos del servidor.
