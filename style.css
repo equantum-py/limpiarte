@@ -32,3 +32,19 @@ nav a:hover,nav a.active{color:#a5410a}.filter-row button.selected{background:#0
 /* Página institucional */
 .about-intro{padding-block:22px 50px}.about-intro h1{font-size:clamp(34px,4vw,56px);max-width:880px;line-height:1.12;letter-spacing:-1.8px}.about-intro h1 span{color:#F36E22}.about-lead{font-size:18px;max-width:640px;color:#64758a;line-height:1.7}.about-story{display:grid;grid-template-columns:1fr 1.3fr;gap:70px;padding-block:36px 52px;border-top:1px solid #e5eaf0}.about-story h2,.about-clients h2{font-size:32px;line-height:1.2;font-weight:400}.about-story p,.about-purpose p,.about-segments p{color:#64758a;line-height:1.85}.about-purpose{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding-bottom:60px}.about-purpose article{padding:32px;border:1px solid #e5eaf0;border-top:3px solid #F36E22;border-radius:5px;background:#fffaf6}.about-purpose article+article{background:#f7faff;border-top-color:#024DA2}.about-purpose h2{font-size:29px;font-weight:400;margin-bottom:18px}.about-purpose p{margin-bottom:0}.about-clients{padding-bottom:55px}.about-segments{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:28px}.about-segments article{border-top:1px solid #e5eaf0;padding-top:20px}.about-segments h3{font-size:19px;font-weight:500}.about-page .breadcrumb{margin-bottom:28px}
 @media(max-width:700px){.about-intro{padding-block:20px 30px}.about-intro h1{font-size:35px;letter-spacing:-1px}.about-intro h1 br{display:none}.about-lead{font-size:16px}.about-story{grid-template-columns:1fr;gap:12px;padding-block:28px}.about-story h2,.about-clients h2{font-size:27px}.about-purpose{grid-template-columns:1fr;gap:18px;padding-bottom:35px}.about-purpose article{padding:24px}.about-segments{grid-template-columns:1fr;gap:14px}.about-segments p{margin-bottom:5px}}
+
+/* Mensaje comercial y abastecimiento */
+.hero-consult{background:none;border:0;border-bottom:1px solid #a7b8cc;padding:0 0 5px;color:var(--ink)}
+.business-supply{display:grid;grid-template-columns:1.1fr 1fr;gap:70px;align-items:center}
+.supply-copy>p{max-width:490px;color:var(--muted);line-height:1.8;margin-bottom:25px}
+.supply-benefits article{display:flex;gap:20px;padding:22px 0;border-bottom:1px solid var(--line)}
+.supply-benefits article>span,.steps-grid article>span{font-size:12px;color:#a5410a}
+.supply-benefits h3,.steps-grid h3{font-size:19px;font-weight:500;margin:0 0 8px}
+.supply-benefits p,.steps-grid p{font-size:14px;color:var(--muted);margin:0;line-height:1.75}
+.quote-steps{padding-top:10px}
+.steps-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.steps-grid article{border-top:1px solid var(--line);padding-top:22px}
+.steps-grid article>span{display:block;margin-bottom:16px}
+.company{border-top:1px solid var(--line)}
+.services h2{font-size:clamp(30px,3vw,42px)}
+@media(max-width:700px){.business-supply{grid-template-columns:1fr;gap:18px}.business-supply h2{font-size:29px}.supply-copy>p{font-size:14px}.supply-benefits article{padding:18px 0}.steps-grid{grid-template-columns:1fr;gap:20px}.steps-grid article{padding-top:18px}.steps-grid article>span{margin-bottom:8px}.hero .actions{flex-wrap:wrap}.services h2 br{display:none}.services h2{max-width:360px}}
