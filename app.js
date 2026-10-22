@@ -1,5 +1,5 @@
 const demo=LimpiarteDemo.load();const categories=demo.categories;const products=demo.products.filter(p=>p.active!==false);const whatsapp=demo.settings.whatsapp;
-function photo(id,name){const p=products.find(p=>p.id===id);if(p?.image)return '<img class="custom-product-photo" src="'+esc(p.image)+'" alt="'+esc(name)+'">';id=Math.max(1,Math.min(8,id));const x=((id-1)%4)*100/3,y=id>4?100:0;return '<span class="demo-photo" role="img" aria-label="'+esc(name)+' · fotografía de muestra" style="background-position:'+x+'% '+y+'%"></span>';}
+function photo(id,name){const p=products.find(p=>p.id===id);if(p?.image)return '<img class="custom-product-photo" src="'+esc(p.image)+'" alt="'+esc(name)+'">';id=Math.max(1,Math.min(8,p?.photoId||id));const x=((id-1)%4)*100/3,y=id>4?100:0;return '<span class="demo-photo" role="img" aria-label="'+esc(name)+' · fotografía de muestra" style="background-position:'+x+'% '+y+'%"></span>';}
 let state={category:'all',query:'',sort:'default',items:[]};let previousFocus;
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 for(const p of products){for(const k of ['name','size','description'])p[k]=esc(p[k]||'');if(p.image&&!/^data:image\/(png|jpeg|webp);base64,/.test(p.image))p.image=null;}for(const c of categories){c.name=esc(c.name);c.short=esc(c.short);}
