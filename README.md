@@ -24,7 +24,7 @@ app.js: catálogo, filtros, detalle de productos y presupuesto.
 assets/: logo, fotografía de referencia e imágenes de productos.
 
 ALCANCE ACTUAL
-Catálogo comercial y consultas por WhatsApp. Sin pagos online, panel administrativo ni almacenamiento de formularios.
+Catálogo comercial y consultas por WhatsApp. Incluye panel administrativo demo local. Sin pagos online ni almacenamiento de formularios en servidor.
 Las fotos y productos son muestras. Las bases y condiciones son provisionales y requieren el texto definitivo del cliente.
 
 REPOSITORIO
@@ -35,3 +35,13 @@ PANEL ADMINISTRATIVO DEMO
 Abrir /admin/ en el mismo dominio. No requiere PHP ni MySQL en esta etapa. Permite agregar, editar, ocultar y eliminar productos, cargar fotos, renombrar categorías y editar WhatsApp, ubicación y horario.
 Los cambios solo persisten en localStorage de ese navegador y dominio; no modifican archivos del servidor ni se comparten entre dispositivos. Recargar la página pública para verlos.
 No tiene autenticación: es una demostración con datos ficticios, no un administrador seguro de producción. La siguiente etapa necesita PHP, MySQL, autenticación y permisos del servidor.
+
+
+CONEXIÓN A VERCEL
+1. En Vercel: Add New > Project > importar equantum-py/limpiarte.
+2. Rama de producción: main. Framework Preset: Other. Root Directory: ./.
+3. vercel.json configura sitio estático, sin comandos de instalación ni compilación y salida en la raíz.
+4. No requiere variables de entorno. Pulsar Deploy.
+5. Verificar / para la página y /admin/ para el panel demo.
+Los datos demo pertenecen al navegador y al dominio; no se transfieren automáticamente entre Hostinger y Vercel.
+Hostinger continúa usando index.html y .htaccess; vercel.json solo afecta a Vercel.
