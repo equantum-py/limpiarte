@@ -48,3 +48,25 @@ nav a:hover,nav a.active{color:#a5410a}.filter-row button.selected{background:#0
 .company{border-top:1px solid var(--line)}
 .services h2{font-size:clamp(30px,3vw,42px)}
 @media(max-width:700px){.business-supply{grid-template-columns:1fr;gap:18px}.business-supply h2{font-size:29px}.supply-copy>p{font-size:14px}.supply-benefits article{padding:18px 0}.steps-grid{grid-template-columns:1fr;gap:20px}.steps-grid article{padding-top:18px}.steps-grid article>span{margin-bottom:8px}.hero .actions{flex-wrap:wrap}.services h2 br{display:none}.services h2{max-width:360px}}
+
+/* Servicios con fotografías y cierre compacto */
+.visual-services{background:#fff8f2}
+.visual-services .section-heading{margin-bottom:28px}
+.visual-services h2{font-size:clamp(28px,3vw,40px);margin-bottom:12px}
+.visual-services .service-intro{max-width:none;margin:0;font-size:15px}
+.service-cards{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:24px}
+.service-card{grid-column:span 2;background:white;border:1px solid #e8eaf0;border-radius:7px;overflow:hidden;display:flex;flex-direction:column}
+.service-card:nth-child(n+4){grid-column:span 3}
+.service-card>img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover}
+.service-card:nth-child(n+4)>img{aspect-ratio:2.2}
+.service-card-copy{padding:23px;display:flex;flex:1;flex-direction:column;align-items:flex-start}
+.service-card h3{font-size:21px;letter-spacing:-.4px;font-weight:500;margin:0 0 10px}
+.service-card p{font-size:14px;max-width:none;margin:0 0 20px;line-height:1.7}
+.service-card .text-link{background:none;border:0;border-bottom:1px solid #afbdce;padding:4px 0;min-height:44px;color:#024da2;font-weight:600;margin-top:auto;display:flex;align-items:center;gap:26px}
+.business-supply{padding-block:44px;gap:50px}
+.business-supply h2{font-size:clamp(27px,2.6vw,35px)}
+.supply-benefits article{padding:15px 0}
+.about-contact-link{display:inline-block;margin-top:17px;color:#024da2}
+.compact-contact{margin-bottom:25px}
+@media(max-width:900px){.service-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.service-card,.service-card:nth-child(n+4){grid-column:auto}.service-card:nth-child(n+4)>img{aspect-ratio:16/10}.service-card:last-child{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.service-card:last-child>img{height:100%;aspect-ratio:16/10}.service-card-copy{padding:20px}}
+@media(max-width:600px){.service-cards{grid-template-columns:1fr;gap:20px}.service-card:last-child{grid-column:auto;display:flex}.service-card:last-child>img{height:auto}.service-card>img,.service-card:nth-child(n+4)>img{aspect-ratio:16/9}.service-card h3{font-size:21px}.visual-services .service-intro{font-size:14px}.business-supply{padding-block:32px;gap:12px}.compact-contact{margin-bottom:18px}}
