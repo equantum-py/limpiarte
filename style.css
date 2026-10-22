@@ -70,3 +70,21 @@ nav a:hover,nav a.active{color:#a5410a}.filter-row button.selected{background:#0
 .compact-contact{margin-bottom:25px}
 @media(max-width:900px){.service-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.service-card,.service-card:nth-child(n+4){grid-column:auto}.service-card:nth-child(n+4)>img{aspect-ratio:16/10}.service-card:last-child{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.service-card:last-child>img{height:100%;aspect-ratio:16/10}.service-card-copy{padding:20px}}
 @media(max-width:600px){.service-cards{grid-template-columns:1fr;gap:20px}.service-card:last-child{grid-column:auto;display:flex}.service-card:last-child>img{height:auto}.service-card>img,.service-card:nth-child(n+4)>img{aspect-ratio:16/9}.service-card h3{font-size:21px}.visual-services .service-intro{font-size:14px}.business-supply{padding-block:32px;gap:12px}.compact-contact{margin-bottom:18px}}
+
+/* Cotización visible y carrusel de servicios en celular */
+.product-bottom .product-quote{width:100%;min-height:44px;height:auto;border-radius:5px;display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 14px;font-size:13px;background:#024da2;border-color:#024da2;color:#fff;font-weight:500}
+.product-bottom .product-quote:hover{background:#073e7e;border-color:#073e7e}
+.product-quote span{font-size:18px;line-height:1}
+.service-carousel-tools{display:none}
+@media(max-width:600px){
+ .visual-services>.wrap{min-width:0}
+ .service-carousel-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:-6px 0 16px}
+ .service-carousel-tools>span{font-size:12px;color:#64758a}
+ .service-carousel-tools>div{display:flex;gap:7px}
+ .service-carousel-tools button{width:44px;height:44px;border:1px solid #ccd8e5;border-radius:50%;background:#fff;color:#024da2;font-size:20px}
+ .visual-services .service-cards{display:flex;overflow-x:auto;gap:16px;scroll-snap-type:x mandatory;scroll-padding-inline:0;padding:3px 3px 14px;margin-inline:-3px;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#a8b8cc #e8edf3}
+ .service-cards .service-card,.service-cards .service-card:last-child{flex:0 0 87%;min-width:0;display:flex;scroll-snap-align:start;scroll-snap-stop:always}
+ .service-cards .service-card>img,.service-cards .service-card:last-child>img{height:auto;aspect-ratio:16/10}
+ .service-cards .service-card-copy{padding:20px}
+ .product-bottom .product-quote{font-size:12px;padding:10px 8px}
+}

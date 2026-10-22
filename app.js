@@ -3,7 +3,7 @@ function photo(id,name){const p=products.find(p=>p.id===id);if(p?.image)return '
 let state={category:'all',query:'',sort:'default',items:[]};let previousFocus;
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 for(const p of products){for(const k of ['name','size','description'])p[k]=esc(p[k]||'');if(p.image&&!/^data:image\/(png|jpeg|webp);base64,/.test(p.image))p.image=null;}for(const c of categories){c.name=esc(c.name);c.short=esc(c.short);}
-function card(p){return '<article><button class="product-image" data-detail="'+p.id+'" aria-label="Ver '+p.name+'">'+photo(p.id,p.name)+'</button><div class="product-info"><span>'+categories.find(c=>c.id===p.cat).short+'</span><h3><a href="#" data-detail="'+p.id+'">'+p.name+'</a></h3><p>'+p.size+'</p><div class="product-bottom"><span>Cotización personalizada</span><button class="add" data-add="'+p.id+'" aria-label="Agregar '+p.name+' al presupuesto">+</button></div></div></article>';}
+function card(p){return '<article><button class="product-image" data-detail="'+p.id+'" aria-label="Ver '+p.name+'">'+photo(p.id,p.name)+'</button><div class="product-info"><span>'+categories.find(c=>c.id===p.cat).short+'</span><h3><a href="#" data-detail="'+p.id+'">'+p.name+'</a></h3><p>'+p.size+'</p><div class="product-bottom"><button class="add product-quote" data-add="'+p.id+'" aria-label="Agregar '+p.name+' al presupuesto">Cotizar <span aria-hidden="true">+</span></button></div></div></article>';}
 function categoryCards(){return categories.map(c=>'<button class="category-card" data-category="'+c.id+'"><h3>'+c.name+'</h3><span>Explorar productos ↗</span>'+photo({limpieza:1,higiene:4,accesorios:6,equipos:8}[c.id],c.name)+'</button>').join('');}
 document.querySelector('#featured-grid').innerHTML=products.slice(0,4).map(card).join('');
 document.querySelector('#home-categories').innerHTML=categoryCards();document.querySelector('#catalog-categories').innerHTML=categoryCards();
@@ -34,3 +34,12 @@ document.querySelector('.hero-note').lastChild.textContent=' '+demo.settings.loc
 document.querySelectorAll('[data-demo-location]').forEach(e=>e.textContent=demo.settings.location);
 document.querySelectorAll('[data-demo-hours]').forEach(e=>e.textContent=demo.settings.hours);
 document.querySelectorAll('[data-demo-phone]').forEach(e=>e.textContent='+'+whatsapp);
+
+const serviceCarousel=document.querySelector('#service-carousel');
+document.querySelectorAll('[data-service-prev],[data-service-next]').forEach(button=>{
+ button.addEventListener('click',()=>{
+  const card=serviceCarousel.querySelector('.service-card');
+  const gap=parseFloat(getComputedStyle(serviceCarousel).columnGap)||16;
+  serviceCarousel.scrollBy({left:(button.hasAttribute('data-service-next')?1:-1)*(card.getBoundingClientRect().width+gap),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+ });
+});
