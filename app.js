@@ -30,7 +30,7 @@ route();
 document.querySelector('#open-terms').addEventListener('click',()=>showDialog('#terms'));
 
 document.querySelectorAll('a[href^="https://wa.me/"]').forEach(a=>{const old=new URL(a.href);a.href='https://wa.me/'+whatsapp+old.search;});
-document.querySelector('.hero-note').lastChild.textContent=' '+demo.settings.location;
+const heroNote=document.querySelector('.hero-note');if(heroNote)heroNote.lastChild.textContent=' '+demo.settings.location;
 document.querySelectorAll('[data-demo-location]').forEach(e=>e.textContent=demo.settings.location);
 document.querySelectorAll('[data-demo-hours]').forEach(e=>e.textContent=demo.settings.hours);
 document.querySelectorAll('[data-demo-phone]').forEach(e=>e.textContent='+'+whatsapp);
