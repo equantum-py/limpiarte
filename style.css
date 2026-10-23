@@ -161,3 +161,29 @@ nav a:hover,nav a.active{color:#a5410a}.filter-row button.selected{background:#0
 .signature-hero>a{max-width:none}
 .signature-hero img{width:100%;aspect-ratio:3.4/1;object-fit:cover;object-position:center 58%;background:#f5f7f9}
 @media(max-width:700px){.signature-hero img{aspect-ratio:1.65/1;object-position:center center}}
+
+/* Banners comerciales con navegación manual */
+.commercial-carousel{position:relative;background:#edf3f8}
+.banner-track{display:flex;width:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.banner-track::-webkit-scrollbar{display:none}
+.commercial-slide{position:relative;flex:0 0 100%;min-width:0;height:clamp(360px,33vw,510px);scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden}
+.commercial-slide>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.banner-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,33,58,.9),rgba(10,33,58,.68) 30%,rgba(10,33,58,.08) 75%)}
+.banner-content{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;color:#fff;padding-block:30px}
+.banner-kicker{font-size:10px;letter-spacing:1.8px;margin-bottom:17px;font-weight:600;color:#ffca9e}
+.banner-content h2{font-size:clamp(32px,3.8vw,54px);line-height:1.1;letter-spacing:-1.5px;max-width:490px;margin:0 0 16px;font-weight:500}
+.banner-content p{font-size:15px;line-height:1.7;max-width:355px;color:#e0e8f2;margin:0 0 25px}
+.banner-cta{background:#F36E22;color:#142e48;font-weight:600;gap:15px}
+.banner-cta:hover{background:#ff914f}
+.product-banner .banner-shade{background:linear-gradient(90deg,#eef3fafa,#eef3faed 28%,#eef3fa44 65%,transparent)}
+.product-banner .banner-content{color:#153655}
+.product-banner .banner-kicker{color:#a5410a}
+.product-banner .banner-content p{color:#4f637b}
+.banner-controls{display:flex;align-items:center;justify-content:center;gap:18px;padding-block:12px}
+.banner-controls>button{border:1px solid #ccd7e5;background:#fff;color:#024da2;width:44px;height:44px;border-radius:50%;font-size:20px}
+.banner-dots{display:flex;align-items:center;gap:2px}
+.banner-dots button{display:grid;place-items:center;width:30px;height:44px;border:0;padding:0;background:transparent}
+.banner-dots button:before{content:"";display:block;width:7px;height:7px;border-radius:50%;background:#afbdcc}
+.banner-dots button[aria-pressed=true]:before{background:#F36E22;width:20px;border-radius:5px}
+.banner-position{font-size:12px;color:#64758a;font-variant-numeric:tabular-nums}
+@media(max-width:700px){.commercial-slide{height:420px}.commercial-slide>img{object-position:62% center}.banner-shade{background:linear-gradient(0deg,rgba(10,33,58,.94),rgba(10,33,58,.65) 43%,rgba(10,33,58,.04) 90%)}.banner-content{justify-content:flex-end;padding-block:26px}.banner-content h2{font-size:31px;letter-spacing:-.9px;max-width:310px;margin-bottom:12px}.banner-kicker{font-size:9px;margin-bottom:12px}.banner-content p{font-size:13px;line-height:1.6;max-width:300px;margin-bottom:19px}.product-banner .banner-shade{background:linear-gradient(0deg,#eef3faff,#eef3fae8 43%,transparent 90%)}.banner-controls{gap:8px;padding-block:6px}.banner-dots{gap:0}.banner-dots button{width:25px}.banner-position{font-size:11px}.banner-controls>button{width:44px;height:44px}}
