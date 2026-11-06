@@ -5,7 +5,7 @@ Propuesta en rama `redesign/servicios-limpiarte-20261106`. No reemplaza producci
 ## Cambios
 - Inicio centrado en servicios de limpieza, higiene y mantenimiento para empresas e instituciones.
 - Paleta oficial azul #024DA2, naranja #F36E22 y WhatsApp #4BCA59.
-- Carrusel de tres escenas, avance automático cada 4 segundos, fundido de imágenes y entrada de texto. Controles manuales y pausa; respeta movimiento reducido y pausa al ocultar pestaña, enfocar, pasar el cursor o abrir un diálogo.
+- Carrusel de tres escenas, avance automático cada 4 segundos, fundido de imágenes y entrada de texto. Sin contador ni controles visibles; respeta movimiento reducido y pausa al ocultar pestaña, enfocar, pasar el cursor o abrir un diálogo.
 - Servicios con detalle y selección para solicitud de presupuesto.
 - Carrusel horizontal nativo de servicios en mobile; composición editorial en desktop.
 - Formulario genera mensaje revisable antes de abrir WhatsApp, sin enviar ni almacenar datos en servidor.
