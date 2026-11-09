@@ -17,3 +17,8 @@ $$('[data-detail]').forEach(button=>button.onclick=()=>{selectedService=services
 $('#detail-quote').onclick=()=>{$('#service-detail').close();$('#service-form select').value=selectedService.name;$('#contacto').scrollIntoView({behavior:reduced.matches?'instant':'smooth'});$('#service-form input').focus({preventScroll:true});};
 $('[data-terms]').onclick=()=>openDialog($('#terms'));
 $('#service-form').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.currentTarget);const message=['Hola Limpiarte, quisiera solicitar un presupuesto.','','Nombre o empresa: '+String(f.get('empresa')).trim(),'Servicio: '+f.get('servicio'),'Ciudad: '+String(f.get('ciudad')).trim(),'',String(f.get('detalle')||'').trim()].join('\n');$('#prepared-text').value=message;$('#send-whatsapp').href='https://wa.me/'+settings.whatsapp+'?text='+encodeURIComponent(message);openDialog($('#prepared'));});
+
+const serviceTabs=$$('[data-service-tab]');
+function selectService(index,focus=false){serviceTabs.forEach((tab,i)=>{const on=i===index;tab.setAttribute('aria-selected',String(on));tab.tabIndex=on?0:-1;$('#panel-'+i).hidden=!on;});if(focus)serviceTabs[index].focus();}
+serviceTabs.forEach((tab,i)=>{tab.addEventListener('click',()=>selectService(i));tab.addEventListener('keydown',e=>{let next=i;if(['ArrowRight','ArrowDown'].includes(e.key))next=(i+1)%serviceTabs.length;else if(['ArrowLeft','ArrowUp'].includes(e.key))next=(i+serviceTabs.length-1)%serviceTabs.length;else if(e.key==='Home')next=0;else if(e.key==='End')next=serviceTabs.length-1;else return;e.preventDefault();selectService(next,true);});});
+$$('[data-sector]').forEach(a=>a.addEventListener('click',()=>{$('#service-form textarea').value='Tipo de espacio: '+a.dataset.sector;}));
