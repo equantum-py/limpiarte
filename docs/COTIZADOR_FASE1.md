@@ -70,3 +70,8 @@ Antes de un despliegue autorizado, guardar el ID de la última versión sana de 
 - La revisión en navegador recorrió estimación y registro con un adaptador local en memoria. Se verificó que la pantalla móvil de 390 px no desborda horizontalmente y que traslado y total permanecen pendientes sin verificación. La captura `docs/qa/cotizador-mobile.jpg` contiene datos de prueba, no tarifas aprobadas.
 - `npm audit --omit=dev --audit-level=high`: 0 vulnerabilidades reportadas para dependencias de producción en esta revisión; no es una garantía de ausencia de vulnerabilidades.
 - No se comprobó aún el recorrido de acceso/TOTP/recuperación con Supabase alojado, persistencia remota, configuración de Vercel real, ni continuidad/restauración. No se enviaron mensajes ni se modificaron bases compartidas.
+
+
+## Presentación comercial sin conexión
+
+`/presentacion.html` es una demostración independiente en el navegador, agregada por solicitud del usuario para mostrar al dueño de Limpiarte. No desbloquea `/admin/`, no consulta ni escribe en la API o Supabase, y no requiere credenciales. Los importes y trayectos son ilustrativos. Su clave localStorage es `limpiarte-presentacion-v1`, separada del catálogo anterior. Permite cambiar estados, consultar un mensaje simulado, editar tarifas y restablecer sus datos de ejemplo. Se verificaron cálculo, registro local, cambio de estado, persistencia al recargar, edición tarifaria y conservación del importe anterior, además del ancho móvil de 390 px.

@@ -15,12 +15,18 @@ for (const f of [
   "cotizador.html",
   "cotizador.css",
   "privacidad.html",
+  "presentacion.html",
+  "presentacion.css",
 ])
   await cp(f, "dist/" + f);
 await cp("assets", "dist/assets", { recursive: true });
 await cp("admin/index.html", "dist/admin/index.html");
 await build({
-  entryPoints: { quote: "client/quote.mjs", "admin/app": "client/admin.mjs" },
+  entryPoints: {
+    quote: "client/quote.mjs",
+    "admin/app": "client/admin.mjs",
+    presentacion: "client/presentation.mjs",
+  },
   outdir: "dist",
   bundle: true,
   format: "esm",

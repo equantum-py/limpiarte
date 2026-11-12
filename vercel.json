@@ -32,7 +32,7 @@
       ]
     },
     {
-      "source": "/(admin/.*|cotizador.html|privacidad.html)",
+      "source": "/(admin/.*|cotizador.html|privacidad.html|presentacion.html)",
       "headers": [
         {
           "key": "Cache-Control",

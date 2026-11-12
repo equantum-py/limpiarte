@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Limpiarte · Presentación del cotizador</title>
+    <link rel="stylesheet" href="/cotizador.css" />
+    <link rel="stylesheet" href="/presentacion.css" />
+    <script type="module" src="/presentacion.js"></script>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/"
+        ><img
+          src="/assets/logo-limpiarte.png"
+          alt="Limpiarte"
+          width="1500"
+          height="422" /></a
+      ><span class="preview-label">PRESENTACIÓN INTERACTIVA</span
+      ><a href="/">Volver al sitio ↗</a>
+    </header>
+    <div class="demo-notice">
+      Datos y tarifas de ejemplo · No envía mensajes ni registra contrataciones.
+      La información se guarda solo en este navegador.
+    </div>
+    <nav class="demo-nav" aria-label="Vistas de la presentación">
+      <button data-tab="cliente" aria-pressed="true">
+        01 <span>Vista del cliente</span></button
+      ><button data-tab="panel" aria-pressed="false">
+        02 <span>Panel de solicitudes</span><b id="nav-count">3</b></button
+      ><button data-tab="tarifas" aria-pressed="false">
+        03 <span>Configurar tarifas</span>
+      </button>
+    </nav>
+    <main class="demo-main">
+      <section id="cliente" class="demo-view">
+        <div class="demo-intro">
+          <div>
+            <p class="eyebrow">MENOS IDAS Y VUELTAS. MÁS OPORTUNIDADES.</p>
+            <h1>De una consulta<br />a una <span>propuesta.</span></h1>
+            <p>
+              El cliente elige su servicio, recibe una estimación y deja su
+              solicitud. Tu equipo tiene todo listo para atenderlo.
+            </p>
+            <div class="steps">
+              <span>Elegí el servicio</span><span>Calculá</span
+              ><span>Solicitá atención</span>
+            </div>
+          </div>
+          <aside class="intro-note">
+            <strong>Probalo en vivo</strong>
+            <p>
+              Completá el formulario y después abrí el panel para ver la
+              solicitud recibida.
+            </p>
+            <button id="example" class="subtle" type="button">
+              Cargar un ejemplo ↗
+            </button>
+          </aside>
+        </div>
+        <div class="quote-layout">
+          <section class="card">
+            <h2>¿Qué espacio cuidamos?</h2>
+            <form id="demo-quote">
+              <div class="columns">
+                <label>Servicio<select name="service" required></select></label
+                ><label id="quantity-label"
+                  >Superficie (m²)<input
+                    name="quantity"
+                    type="number"
+                    min="1"
+                    max="100000"
+                    step="0.01"
+                    value="100"
+                    required
+                /></label>
+              </div>
+              <div class="columns">
+                <label
+                  >Ciudad<select name="city">
+                    <option>Asunción</option>
+                    <option>Luque</option>
+                    <option>San Lorenzo</option>
+                    <option>Capiatá</option>
+                    <option value="Otra">Otra ubicación</option>
+                  </select></label
+                ><label
+                  >Trayecto de ejemplo<select name="distance">
+                    <option value="">Ubicación por confirmar</option>
+                    <option value="10">Hasta 20 km (ejemplo: 10 km)</option>
+                    <option value="25">De 20 a 30 km (ejemplo: 25 km)</option>
+                    <option value="40">De 30 a 50 km (ejemplo: 40 km)</option>
+                    <option value="60">Más de 50 km (ejemplo: 60 km)</option>
+                  </select></label
+                >
+              </div>
+              <p class="muted">
+                Simulación de traslado: no consulta mapas ni verifica una
+                dirección real. Podés dejar la ubicación pendiente.
+              </p>
+              <fieldset id="demo-extras">
+                <legend>Complementos</legend>
+              </fieldset>
+              <label
+                >Contanos sobre tu espacio<textarea
+                  name="details"
+                  rows="2"
+                  maxlength="1000"
+                  placeholder="Por ejemplo: oficina de dos plantas, atención fuera del horario laboral."
+                ></textarea></label
+              ><button type="submit">Calcular estimación ↗</button>
+            </form>
+          </section>
+          <aside class="card estimate-card">
+            <p class="eyebrow">TU PROPUESTA, MÁS CLARA</p>
+            <h2>Estimación del servicio</h2>
+            <div id="empty-estimate">
+              <div class="estimate-symbol">↗</div>
+              <p>Completá los datos y conocé el importe orientativo.</p>
+              <small>Las tarifas utilizadas son ilustrativas.</small>
+            </div>
+            <div id="demo-result" hidden>
+              <dl id="demo-breakdown"></dl>
+              <div class="total-box">
+                <span>Total orientativo</span><strong id="demo-total"></strong>
+              </div>
+              <p id="demo-conditions" class="muted"></p>
+              <p id="location-warning" class="muted"></p>
+              <form id="demo-send">
+                <div class="columns">
+                  <label
+                    >Nombre de ejemplo<input
+                      name="name"
+                      maxlength="100"
+                      value="Empresa de ejemplo"
+                      required /></label
+                  ><label
+                    >Teléfono de ejemplo<input
+                      name="phone"
+                      maxlength="30"
+                      placeholder="Opcional"
+                  /></label>
+                </div>
+                <button type="submit">Simular solicitud ↗</button>
+              </form>
+              <div id="demo-success" hidden>
+                <p role="status" id="success-text"></p>
+                <button id="see-request" type="button">
+                  Ver en el panel ↗
+                </button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+      <section id="panel" class="demo-view" hidden>
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">EL EQUIPO TOMA EL CONTROL</p>
+            <h1>Cada consulta.<br /><span>Una oportunidad.</span></h1>
+          </div>
+          <p>
+            Revisá qué necesita cada cliente y acompañá su solicitud hasta el
+            cierre. Esta vista simula las funciones del panel; no es el acceso
+            administrativo real.
+          </p>
+        </div>
+        <div id="metrics" class="metrics"></div>
+        <section class="card">
+          <div class="toolbar spread">
+            <h2>Solicitudes recibidas</h2>
+            <label class="filter-label"
+              >Filtrar estado<select id="filter">
+                <option value="">Todos</option>
+                <option>Nueva</option>
+                <option>Contactada</option>
+                <option>Cotizada</option>
+                <option>Aceptada</option>
+                <option>Rechazada</option>
+                <option>Finalizada</option>
+              </select></label
+            >
+          </div>
+          <div id="demo-requests"></div>
+        </section>
+      </section>
+      <section id="tarifas" class="demo-view" hidden>
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">TU NEGOCIO, TUS REGLAS</p>
+            <h1>Ajustá tarifas.<br /><span>Cotizá con criterio.</span></h1>
+          </div>
+          <p>
+            Probá cómo cambian los presupuestos al modificar los precios. Las
+            solicitudes ya guardadas mantienen la tarifa con la que se crearon.
+          </p>
+        </div>
+        <form id="demo-rates" class="card">
+          <h2>Tarifas de ejemplo · Guaraníes</h2>
+          <div id="rate-rows"></div>
+          <div class="columns">
+            <label
+              >Traslado fijo Asunción (Gs.)<input
+                name="asu"
+                type="number"
+                min="0"
+                max="10000000"
+                required /></label
+            ><label
+              >Vigencia (días)<input
+                name="validity"
+                type="number"
+                min="1"
+                max="90"
+                required
+            /></label>
+          </div>
+          <div class="columns">
+            <label
+              >Descuento (porcentaje)<input
+                name="discount"
+                type="number"
+                min="0"
+                max="50"
+                step="0.01"
+                required /></label
+            ><label
+              >Impuesto en esta presentación<select name="tax">
+                <option value="none">Sin impuesto configurado</option>
+                <option value="included">10% incluido</option>
+                <option value="excluded">10% adicional</option>
+              </select></label
+            >
+          </div>
+          <label
+            >Condiciones para el cliente<textarea
+              name="conditions"
+              rows="3"
+              maxlength="1500"
+              required
+            ></textarea>
+          </label>
+          <div class="toolbar">
+            <button>Aplicar cambios a la presentación</button
+            ><span id="rates-status" role="status"></span>
+          </div>
+          <p class="muted">
+            No modifica tarifas reales ni otros dispositivos. Traslados de
+            ejemplo: hasta 20 km Gs. 200.000; hasta 30 km Gs. 250.000; hasta 50
+            km Gs. 350.000; adicional Gs. 5.000/km. Sin mapas conectados.
+          </p>
+        </form>
+      </section>
+      <p id="demo-message" role="status" aria-live="polite"></p>
+    </main>
+    <footer>
+      <p>Limpiarte · MAFARA S.A. · Presentación de funcionamiento</p>
+      <button id="reset-demo" class="text-button" type="button">
+        Restablecer datos de ejemplo
+      </button>
+    </footer>
+    <dialog id="request-detail" aria-labelledby="detail-heading">
+      <div class="toolbar spread">
+        <h2 id="detail-heading">Detalle de la solicitud</h2>
+        <button id="close-detail" class="text-button" type="button">
+          Cerrar ×
+        </button>
+      </div>
+      <div id="detail-content"></div>
+    </dialog>
+  </body>
+</html>

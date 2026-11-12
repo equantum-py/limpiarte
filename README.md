@@ -2,6 +2,10 @@
 
 Sitio institucional en HTML, CSS y JavaScript, con cotizador y administración de solicitudes preparados para Vercel + Supabase. Se mantiene el diseño y la paleta aprobados: #F36E22 y #024DA2; WhatsApp #4BCA59.
 
+## Presentación para el cliente
+
+Abrir `/presentacion.html` en el preview de esta rama. Funciona sin Supabase ni variables de entorno: permite calcular una estimación, simular el registro, atender solicitudes y modificar tarifas de ejemplo. El panel mostrado allí es una simulación local, separada del acceso administrativo real. No envía WhatsApp, no crea contrataciones y guarda únicamente en el navegador. Usar datos ficticios; el botón de restablecer recupera los ejemplos iniciales.
+
 ## Estado de esta rama
 
 La Fase 1 está en desarrollo para revisión. No está conectada a una base exclusiva de Limpiarte ni fue desplegada a producción. Las tarifas están desactivadas hasta su aprobación comercial. El panel requiere autenticación y doble factor; no tiene acceso público de prueba.
