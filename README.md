@@ -4,7 +4,7 @@ Sitio institucional en HTML, CSS y JavaScript, con cotizador y administración d
 
 ## Presentación para el cliente
 
-Abrir `/presentacion.html` en el preview de esta rama. Funciona sin Supabase ni variables de entorno: permite calcular una estimación, simular el registro, atender solicitudes y modificar tarifas de ejemplo. El panel mostrado allí es una simulación local, separada del acceso administrativo real. No envía WhatsApp, no crea contrataciones y guarda únicamente en el navegador. Usar datos ficticios; el botón de restablecer recupera los ejemplos iniciales.
+Abrir `/presentacion.html` en el preview de esta rama. Funciona sin Supabase ni variables de entorno: permite calcular una estimación, simular el registro, atender solicitudes y modificar tarifas de ejemplo. El panel mostrado allí es una simulación local, separada del acceso administrativo real. No envía WhatsApp, no crea contrataciones y guarda únicamente en el navegador. Usar datos ficticios; el botón de restablecer recupera los ejemplos iniciales. El botón Descargar presentación entrega un HTML autónomo con fuentes, logo, estilos y lógica integrados para abrir en una reunión sin conexión.
 
 ## Estado de esta rama
 
