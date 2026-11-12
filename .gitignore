@@ -1,2 +1,9 @@
 dist/
 .openai/hosting.json
+node_modules/
+.env
+.env.*
+!.env.example
+.vercel/
+coverage/
+supabase/.temp/

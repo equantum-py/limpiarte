@@ -1,47 +1,41 @@
-LIMPIARTE — INSTALACIÓN EN HOSTINGER
+# Limpiarte · MAFARA S.A.
 
-Tecnologías: HTML, CSS y JavaScript. Sin instalación de paquetes, compilación, Node.js ni base de datos.
+Sitio institucional en HTML, CSS y JavaScript, con cotizador y administración de solicitudes preparados para Vercel + Supabase. Se mantiene el diseño y la paleta aprobados: #F36E22 y #024DA2; WhatsApp #4BCA59.
 
-1. En Hostinger, crear un sitio nuevo de tipo PHP/HTML para Limpiarte.
-2. Abrir el administrador de archivos de ese sitio e ingresar a public_html.
-3. Subir LIMPIARTE_Hostinger.zip y extraer allí su contenido.
-4. index.html, style.css, app.js y assets deben quedar directamente en public_html, sin una carpeta intermedia.
-5. Abrir el dominio temporal o definitivo asignado a ese sitio.
+## Estado de esta rama
 
-No extraer sobre un sitio existente de otro proyecto. Si hay una página predeterminada, respaldarla antes de reemplazarla.
+La Fase 1 está en desarrollo para revisión. No está conectada a una base exclusiva de Limpiarte ni fue desplegada a producción. Las tarifas están desactivadas hasta su aprobación comercial. El panel requiere autenticación y doble factor; no tiene acceso público de prueba.
 
-VERIFICACIÓN
-- Revisar Inicio, Productos, Servicios y Quiénes somos.
-- Buscar productos y filtrar categorías.
-- Agregar productos al presupuesto, ajustar cantidades y preparar la consulta.
-- Enviar por WhatsApp abre el número +595 994 837779 con el mensaje preparado. El visitante confirma el envío en WhatsApp.
-- Revisar Bases y condiciones y la vista desde un celular.
+## Ejecutar y verificar
 
-ARCHIVOS EDITABLES
-index.html: textos de empresa, contacto, menú y footer.
-style.css: diseño adaptable y colores #F36E22 y #024DA2. WhatsApp #4BCA59.
-app.js: catálogo, filtros, detalle de productos y presupuesto.
-assets/: logo, fotografía de referencia e imágenes de productos.
+Requiere Node.js 24.
 
-ALCANCE ACTUAL
-Catálogo comercial y consultas por WhatsApp. Incluye panel administrativo demo local. Sin pagos online ni almacenamiento de formularios en servidor.
-Las fotos y productos son muestras. Las bases y condiciones son provisionales y requieren el texto definitivo del cliente.
+```sh
+npm ci
+npm test
+npm run build
+npm run dev
+```
 
-REPOSITORIO
-Estos mismos archivos pueden mantenerse en el repositorio del proyecto. Repositorio: https://github.com/equantum-py/limpiarte — rama main.
+Sin variables de entorno, el sitio se ve y los módulos de cotización/administración quedan cerrados. `.env.example` enumera las variables; el servidor no carga archivos `.env` automáticamente: configurarlas en el proceso o en Vercel. Nunca subir valores reales al repositorio.
 
+Para una prueba local descartable del cotizador: `npm run dev:fixture`, con `http://127.0.0.1:4173`. Usa datos en memoria y no permite probar autenticación ni persistencia real. No habilitar ese modo en un despliegue.
 
-PANEL ADMINISTRATIVO DEMO
-Abrir /admin/ en el mismo dominio. No requiere PHP ni MySQL en esta etapa. Permite agregar, editar, ocultar y eliminar productos, cargar fotos, renombrar categorías y editar WhatsApp, ubicación y horario.
-Los cambios solo persisten en localStorage de ese navegador y dominio; no modifican archivos del servidor ni se comparten entre dispositivos. Recargar la página pública para verlos.
-No tiene autenticación: es una demostración con datos ficticios, no un administrador seguro de producción. La siguiente etapa necesita PHP, MySQL, autenticación y permisos del servidor.
+## Rutas
 
+- `/`: página de servicios actual.
+- `/quienes-somos.html`: presentación institucional.
+- `/productos.html`: catálogo existente.
+- `/cotizador.html`: estimación y solicitud con continuidad por WhatsApp.
+- `/admin/`: tarifas y solicitudes del cotizador, con acceso restringido.
+- `/privacidad.html`: aviso del cotizador pendiente de aprobación de Limpiarte.
 
-CONEXIÓN A VERCEL
-1. En Vercel: Add New > Project > importar equantum-py/limpiarte.
-2. Rama de producción: main. Framework Preset: Other. Root Directory: ./.
-3. vercel.json configura sitio estático, sin comandos de instalación ni compilación y salida en la raíz.
-4. No requiere variables de entorno. Pulsar Deploy.
-5. Verificar / para la página y /admin/ para el panel demo.
-Los datos demo pertenecen al navegador y al dominio; no se transfieren automáticamente entre Hostinger y Vercel.
-Hostinger continúa usando index.html y .htaccess; vercel.json solo afecta a Vercel.
+## Preparación de Vercel
+
+`vercel.json` usa `npm ci`, `npm run build` y salida pública `dist/`. La API `/api/cotizador` se ejecuta en el servidor Node.js. El frontend no contiene credenciales privadas. Usar una base propia por ambiente y el origen exacto en `APP_ORIGIN`.
+
+Los detalles de migración, roles, MFA, configuración, pruebas, límites y pendientes están en [docs/COTIZADOR_FASE1.md](docs/COTIZADOR_FASE1.md). Revisarlos antes de habilitar un ambiente. No copiar esta rama completa a `public_html`: un alojamiento solo estático o PHP no ejecutará esta API Node.js.
+
+El catálogo anterior dependía de datos locales del navegador; no se migran automáticamente. La Fase 1 implementa administración de tarifas y solicitudes, sin pagos online ni integración de rutas geográficas.
+
+Repositorio: https://github.com/equantum-py/limpiarte

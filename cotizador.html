@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Cotizá tu servicio · Limpiarte</title>
+    <meta
+      name="description"
+      content="Solicitá una cotización de limpieza para tu empresa o espacio con Limpiarte."
+    />
+    <link rel="stylesheet" href="/cotizador.css" />
+    <script type="module" src="/quote.js"></script>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/"
+        ><img
+          src="/assets/logo-limpiarte.png"
+          alt="Limpiarte"
+          width="1500"
+          height="422" /></a
+      ><a href="/#servicios">Ver servicios ↗</a>
+    </header>
+    <main>
+      <section class="intro">
+        <p class="eyebrow">CUIDAMOS TU ESPACIO</p>
+        <h1>Tu próximo servicio,<br /><span>más cerca.</span></h1>
+        <p>
+          Contanos qué necesitás. Prepará una estimación y compartí tu solicitud
+          con nuestro equipo.
+        </p>
+        <a href="https://wa.me/595994837779">¿Preferís conversar? WhatsApp ↗</a>
+      </section>
+      <section class="card">
+        <h2>Coticemos tu servicio</h2>
+        <p id="notice" role="status" aria-live="polite">
+          Consultando servicios disponibles…
+        </p>
+        <form id="quote-form" hidden>
+          <label>Servicio<select name="serviceId" required></select></label
+          ><label id="quantity-label"
+            >Superficie aproximada (m²)<input
+              name="quantity"
+              type="number"
+              min="1"
+              max="100000"
+              step="0.01"
+              required
+          /></label>
+          <fieldset id="extras">
+            <legend>Complementos opcionales</legend>
+          </fieldset>
+          <div class="columns">
+            <label
+              >Ciudad<input
+                name="city"
+                list="cities"
+                maxlength="100"
+                required
+                autocomplete="address-level2" /></label
+            ><datalist id="cities"></datalist
+            ><label
+              >Dirección<input
+                name="address"
+                maxlength="300"
+                autocomplete="street-address"
+            /></label>
+          </div>
+          <label
+            >¿Qué debemos tener en cuenta?<textarea
+              name="details"
+              maxlength="1500"
+              rows="3"
+              placeholder="Tipo de espacio, frecuencia y condiciones del lugar"
+            ></textarea></label
+          ><button>Ver estimación ↗</button>
+        </form>
+        <section id="result" hidden aria-live="polite">
+          <h2>Tu estimación</h2>
+          <dl id="summary"></dl>
+          <p id="conditions"></p>
+          <p id="transport-note"></p>
+          <form id="request-form">
+            <div class="columns">
+              <label
+                >Nombre o empresa (opcional)<input
+                  name="name"
+                  maxlength="150"
+                  autocomplete="name" /></label
+              ><label
+                >Teléfono (opcional)<input
+                  name="phone"
+                  maxlength="30"
+                  type="tel"
+                  autocomplete="tel"
+              /></label>
+            </div>
+            <label class="check"
+              ><input type="checkbox" name="consent" required />Autorizo a
+              Limpiarte a guardar los datos de esta solicitud y contactarme para
+              atenderla.
+              <a href="/privacidad.html" target="_blank" rel="noopener"
+                >Privacidad</a
+              ></label
+            ><button>Guardar solicitud</button>
+          </form>
+          <p id="saved" role="status"></p>
+          <a
+            id="whatsapp"
+            class="button whatsapp"
+            hidden
+            target="_blank"
+            rel="noopener noreferrer"
+            >Continuar por WhatsApp ↗</a
+          >
+        </section>
+      </section>
+    </main>
+    <footer>
+      <a href="/">Volver a Limpiarte</a>
+      <p>MAFARA S.A. · Luque, Paraguay · +595 994 837779</p>
+    </footer>
+  </body>
+</html>
