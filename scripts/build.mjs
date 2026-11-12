@@ -21,11 +21,13 @@ for (const f of [
   await cp(f, "dist/" + f);
 await cp("assets", "dist/assets", { recursive: true });
 await cp("admin/index.html", "dist/admin/index.html");
+await cp("admin/presentacion.html", "dist/admin/presentacion.html");
 await build({
   entryPoints: {
     quote: "client/quote.mjs",
     "admin/app": "client/admin.mjs",
-    presentacion: "client/presentation.mjs",
+    "cliente-presentacion": "client/customer-demo.mjs",
+    "admin/presentacion": "client/presentation.mjs",
   },
   outdir: "dist",
   bundle: true,
@@ -49,26 +51,38 @@ const font = (await readFile("assets/fonts/manrope-regular.ttf")).toString(
   "base64",
 );
 const logo = (await readFile("assets/logo-limpiarte.png")).toString("base64");
-const demoScript = (await readFile("dist/presentacion.js", "utf8")).replaceAll(
-  "</script",
-  "<\\/script",
+async function portablePage(source, script, output) {
+  const demoScript = (await readFile(script, "utf8")).replaceAll(
+    "</script",
+    "<\\/script",
+  );
+  const portable = (await readFile(source, "utf8"))
+    .replace(/<link[^>]+href="\/(?:cotizador|presentacion)\.css"[^>]*>/g, "")
+    .replace(
+      /<script type="module" src="[^"]+"><\/script>/,
+      () =>
+        "<style>" +
+        demoCss.replaceAll(
+          "/assets/fonts/manrope-regular.ttf",
+          "data:font/ttf;base64," + font,
+        ) +
+        '</style><script type="module">' +
+        demoScript +
+        "</script>",
+    )
+    .replaceAll("/assets/logo-limpiarte.png", "data:image/png;base64," + logo)
+    .replaceAll('href="/"', 'href="#"')
+    .replace(/<a[^>]*id="download-presentation"[\s\S]*?<\/a>/, "")
+    .replace(/<a[^>]+href="\/presentacion.html"[^>]*>[\s\S]*?<\/a>/, "");
+  await writeFile(output, portable);
+}
+await portablePage(
+  "presentacion.html",
+  "dist/cliente-presentacion.js",
+  "dist/presentacion-offline.html",
 );
-const portable = (await readFile("presentacion.html", "utf8"))
-  .replace('<link rel="stylesheet" href="/cotizador.css" />', "")
-  .replace('<link rel="stylesheet" href="/presentacion.css" />', "")
-  .replace(
-    '<script type="module" src="/presentacion.js"></script>',
-    () =>
-      "<style>" +
-      demoCss.replaceAll(
-        "/assets/fonts/manrope-regular.ttf",
-        "data:font/ttf;base64," + font,
-      ) +
-      '</style><script type="module">' +
-      demoScript +
-      "</script>",
-  )
-  .replaceAll("/assets/logo-limpiarte.png", "data:image/png;base64," + logo)
-  .replaceAll('href="/"', 'href="#"')
-  .replace(/<a[^>]*id="download-presentation"[\s\S]*?<\/a>/, "");
-await writeFile("dist/presentacion-offline.html", portable);
+await portablePage(
+  "admin/presentacion.html",
+  "dist/admin/presentacion.js",
+  "dist/admin/presentacion-offline.html",
+);

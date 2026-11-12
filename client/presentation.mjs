@@ -1,10 +1,16 @@
 import { estimate, validateConfig, TRANSITIONS } from "../lib/quote-engine.mjs";
-import { defaultConfig } from "../lib/default-config.mjs";
+import {
+  initialConfig,
+  seed,
+  readState,
+  writeState,
+  KEY,
+} from "./demo-state.mjs";
 const $ = (s) => document.querySelector(s),
   form = $("#demo-quote"),
   send = $("#demo-send"),
   rates = $("#demo-rates");
-const KEY = "limpiarte-presentacion-v1";
+
 const money = (n) =>
   n === null
     ? "A confirmar"
@@ -13,95 +19,15 @@ const money = (n) =>
         currency: "PYG",
         maximumFractionDigits: 0,
       }).format(n);
-function initialConfig() {
-  const c = structuredClone(defaultConfig);
-  c.commercial.approved = true;
-  c.commercial.conditions =
-    "Estimación ilustrativa, sujeta a evaluación del espacio y confirmación de disponibilidad. No constituye una contratación.";
-  c.services = c.services.slice(0, 4);
-  [3500, 3000, 5000, 7000].forEach((rate, i) =>
-    Object.assign(c.services[i], {
-      enabled: true,
-      approved: true,
-      rate,
-      minimum: [180000, 160000, 250000, 350000][i],
-      extras: [
-        { id: "vidrios", name: "Limpieza de vidrios interiores", price: 50000 },
-      ],
-      method: i === 3 ? "manual" : "area",
-    }),
-  );
-  c.transport.cities[0].approved = true;
-  return c;
-}
-function seed(c) {
-  return [
-    ["Empresa Horizonte", "oficinas", 120, "Luque", null, "Nueva"],
-    ["Oficinas del Centro", "profunda", 80, "Asunción", 10, "Contactada"],
-    [
-      "Comercio Los Jardines",
-      "residencial",
-      100,
-      "San Lorenzo",
-      25,
-      "Cotizada",
-    ],
-  ].map(([name, serviceId, quantity, city, km, state], i) => ({
-    id: "LMP-" + String(1001 + i),
-    createdAt: new Date(Date.now() - (i + 1) * 3600000).toISOString(),
-    name,
-    phone: "No proporcionado",
-    quote: estimate(
-      c,
-      {
-        serviceId,
-        quantity,
-        city,
-        extraIds: [],
-        details: "Solicitud ficticia para mostrar el funcionamiento.",
-        address: "",
-      },
-      km ? { verified: true, city, distanceMeters: km * 1000 } : null,
-    ),
-    state,
-    version: 1,
-    history: [{ state, at: new Date().toISOString() }],
-  }));
-}
-let config = initialConfig(),
-  requests = seed(config),
-  version = 1,
-  current = null,
+let { config, requests, version } = readState();
+let current = null,
   selectedId = null,
   storageAvailable = true;
-try {
-  const saved = JSON.parse(localStorage.getItem(KEY) || "null");
-  if (saved) {
-    validateConfig(saved.config);
-    if (
-      !Array.isArray(saved.requests) ||
-      saved.requests.length > 200 ||
-      !Number.isInteger(saved.version)
-    )
-      throw Error();
-    config = saved.config;
-    requests = saved.requests;
-    version = saved.version;
-  }
-} catch {
-  config = initialConfig();
-  requests = seed(config);
-  version = 1;
-}
 function persist() {
-  try {
-    localStorage.setItem(KEY, JSON.stringify({ config, requests, version }));
-    storageAvailable = true;
-  } catch {
-    storageAvailable = false;
+  storageAvailable = writeState({ config, requests, version });
+  if (!storageAvailable)
     $("#demo-message").textContent =
-      "El navegador no permite guardar datos. Podés seguir probando durante esta sesión.";
-  }
+      "El navegador no permite conservar esta presentación al cerrarla.";
 }
 function tab(id) {
   for (const name of ["cliente", "panel", "tarifas"])
@@ -477,3 +403,13 @@ $("#reset-demo").onclick = () => {
 };
 renderPanel();
 renderRates();
+
+window.addEventListener("storage", (e) => {
+  if (e.key !== KEY) return;
+  ({ config, requests, version } = readState());
+  clearQuote();
+  renderPanel();
+  renderRates();
+  if ($("#request-detail").open) $("#request-detail").close();
+});
+tab("panel");

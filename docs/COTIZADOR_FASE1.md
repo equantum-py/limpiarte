@@ -75,3 +75,8 @@ Antes de un despliegue autorizado, guardar el ID de la última versión sana de 
 ## Presentación comercial sin conexión
 
 `/presentacion.html` es una demostración independiente en el navegador, agregada por solicitud del usuario para mostrar al dueño de Limpiarte. No desbloquea `/admin/`, no consulta ni escribe en la API o Supabase, y no requiere credenciales. Los importes y trayectos son ilustrativos. Su clave localStorage es `limpiarte-presentacion-v1`, separada del catálogo anterior. Permite cambiar estados, consultar un mensaje simulado, editar tarifas y restablecer sus datos de ejemplo. Se verificaron cálculo, registro local, cambio de estado, persistencia al recargar, edición tarifaria y conservación del importe anterior, además del ancho móvil de 390 px.
+
+
+## Separación de vistas de demostración
+
+La presentación ahora se divide físicamente: `/presentacion.html` contiene solo el cotizador básico del cliente y utiliza un módulo propio; `/admin/presentacion.html` contiene solicitudes, cotizador interno y tarifas. No hay pestañas administrativas ni listado de solicitudes en el HTML del cliente. La vista interna de demostración no concede acceso al administrador real ni a datos remotos. Ambas usan exclusivamente información ficticia en localStorage. En dos pestañas del mismo origen se actualizan mediante el evento storage; el cliente debe recalcular si cambió la versión tarifaria antes de registrar. Los dos HTML portátiles son independientes; para mostrar sincronización, usar el preview del mismo dominio.

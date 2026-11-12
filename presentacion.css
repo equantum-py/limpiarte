@@ -423,3 +423,53 @@ summary:focus-visible {
 .demo-nav button {
   min-width: 0;
 }
+.customer-main {
+  display: block;
+  max-width: 850px;
+  margin: 42px auto;
+  padding: 0 24px;
+}
+.customer-intro {
+  max-width: 720px;
+  margin-bottom: 28px;
+}
+.customer-intro h1 {
+  font-size: clamp(30px, 4vw, 45px);
+  line-height: 1.12;
+  margin: 14px 0 18px;
+}
+.customer-intro > p:last-child {
+  font-size: 14px;
+  color: #587081;
+  max-width: 600px;
+}
+.customer-card {
+  padding: 30px;
+}
+#customer-result {
+  margin-top: 26px;
+  border-top: 2px solid #f36e22;
+  padding-top: 24px;
+}
+#customer-summary {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+}
+#customer-summary dd {
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+#customer-success h3 {
+  color: #166b32;
+}
+@media (max-width: 760px) {
+  .customer-main {
+    margin: 24px auto;
+    padding: 0 18px;
+  }
+  .customer-intro h1 {
+    font-size: 31px;
+  }
+  .customer-card {
+    padding: 22px 18px;
+  }
+}
