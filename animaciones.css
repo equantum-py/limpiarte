@@ -1,0 +1,27 @@
+/* Progressive cross-document transitions: regular navigation remains the fallback. */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:limpiarte-page-out .16s ease-out both}
+::view-transition-new(root){animation:limpiarte-page-in .32s cubic-bezier(.2,.7,.25,1) both}
+@keyframes limpiarte-page-out{to{opacity:0}}
+@keyframes limpiarte-page-in{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.site-header{view-transition-name:limpiarte-header;transition:box-shadow .35s ease,background-color .35s ease}
+::view-transition-old(limpiarte-header),::view-transition-new(limpiarte-header){animation:none;mix-blend-mode:normal}
+.site-header.is-scrolled{box-shadow:0 5px 23px #1536550d;background-color:#fff}
+.button{transition:background-color .3s ease,color .3s ease,box-shadow .35s ease,transform .35s cubic-bezier(.2,.7,.25,1)}
+.button .arrow-icon,.text-link .arrow-icon,.service-card-link .arrow-icon,.service-consult-card .arrow-icon{transition:transform .35s cubic-bezier(.2,.7,.25,1)}
+.corporate-service-card{transition:box-shadow .45s ease,transform .45s cubic-bezier(.2,.7,.25,1),border-color .35s ease}
+.service-card-photo img{transition:transform .8s cubic-bezier(.2,.7,.25,1)}
+.text-link{transition:border-color .3s ease,color .3s ease}
+input,select,textarea{transition:border-color .2s ease,box-shadow .2s ease,background-color .2s ease}
+input:focus,select:focus,textarea:focus{background-color:#fff;box-shadow:0 2px 0 #024da230}
+@media(hover:hover) and (pointer:fine){
+ .button:hover{transform:translateY(-2px);box-shadow:0 7px 18px #163e6415}
+ .button:hover .arrow-icon,.text-link:hover .arrow-icon,.corporate-service-card:hover .service-card-link .arrow-icon,.service-consult-card a:hover .arrow-icon{transform:translate(2px,-2px)}
+ .corporate-service-card:hover{transform:translateY(-4px);border-color:#bed1e2}
+ .text-link:hover{border-color:#f36e22}
+}
+@media(prefers-reduced-motion:reduce){
+ ::view-transition-old(root),::view-transition-new(root),::view-transition-old(limpiarte-header),::view-transition-new(limpiarte-header){animation:none!important}
+ .button:hover,.corporate-service-card:hover,.button:hover .arrow-icon,.text-link:hover .arrow-icon,.corporate-service-card:hover .service-card-link .arrow-icon,.service-consult-card a:hover .arrow-icon{transform:none!important}
+ .site-header,.button,.corporate-service-card,.service-card-photo img,.arrow-icon,input,select,textarea{transition:none!important}
+}
