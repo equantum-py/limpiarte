@@ -1,1 +1,201 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Administración · Limpiarte</title><link rel="stylesheet" href="admin.css"></head><body><aside><img src="../assets/logo-limpiarte.png" alt="Limpiarte"><strong>Administración </strong><nav><a href="#productos">Productos</a><a href="#categorias">Categorías</a><a href="#contacto">Datos comerciales</a><a href="../index.html" target="_blank" rel="noopener">Ver página ↗</a></nav></aside><main><div class="notice">Los cambios se guardan solo en este navegador y no se comparten entre dispositivos. Este panel no tiene autenticación.</div><header><div><p>GESTIÓN DEL CATÁLOGO</p><h1>Panel de Limpiarte</h1></div><button id="restore" class="secondary">Restablecer datos</button></header><div class="stats"><article><span>Productos</span><b id="total"></b></article><article><span>Visibles</span><b id="visible"></b></article><article><span>Categorías</span><b id="cat-total"></b></article></div><p id="status" role="status"></p><section id="productos"><div class="heading"><h2>Productos</h2><button id="new">Agregar producto +</button></div><label>Buscar producto<input id="search" type="search" placeholder="Nombre o presentación"></label><div class="table-wrap"><table><thead><tr><th>Producto</th><th>Categoría</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="rows"></tbody></table></div></section><section id="categorias"><h2>Categorías</h2><p>Actualizá el nombre de las familias del catálogo.</p><form id="category-form"><div id="category-fields"></div><button>Guardar categorías</button></form></section><section id="contacto"><h2>Datos comerciales</h2><form id="settings-form"><label>WhatsApp (código de país y número)<input name="whatsapp" pattern="[0-9]{8,15}" required maxlength="15"></label><label>Ubicación<input name="location" required maxlength="120"></label><label>Horario<input name="hours" required maxlength="160"></label><button>Guardar datos</button></form></section></main><dialog id="editor"><form id="product-form"><div class="heading"><h2 id="editor-title">Producto</h2><button type="button" id="close" class="secondary">Cerrar ×</button></div><input name="id" type="hidden"><label>Nombre<input name="name" required maxlength="100"></label><label>Categoría<select name="cat"></select></label><label>Presentación<input name="size" required maxlength="100" placeholder="Bidón · 5 litros"></label><label>Descripción<textarea name="description" rows="3" maxlength="1000"></textarea></label><label>Fotografía (JPG, PNG o WebP, máximo 2 MB)<input id="image" type="file" accept="image/jpeg,image/png,image/webp"></label><label class="check"><input name="active" type="checkbox" checked> Mostrar en la página</label><p id="error" role="alert"></p><button>Guardar producto</button></form></dialog><script src="../demo-data.js"></script><script src="admin.js"></script></body></html>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Administración · Limpiarte</title>
+    <link rel="stylesheet" href="/cotizador.css" />
+    <script type="module" src="/admin/app.js"></script>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/"
+        ><img
+          src="/assets/logo-limpiarte.png"
+          alt="Limpiarte"
+          width="1500"
+          height="422"
+      /></a>
+      <div class="toolbar">
+        <a href="/admin/presentacion.html">Presentación del panel ↗</a>
+        <a href="/cotizador.html">Cotizador ↗</a
+        ><button id="logout" hidden>Cerrar sesión</button>
+      </div>
+    </header>
+    <main class="admin-main">
+      <h1>Administración</h1>
+      <p id="message" role="status" aria-live="polite">Comprobando conexión…</p>
+      <section id="auth" class="card compact" hidden>
+        <h2>Acceso al equipo</h2>
+        <form id="login">
+          <label
+            >Correo<input
+              name="email"
+              type="email"
+              required
+              autocomplete="username" /></label
+          ><label
+            >Contraseña<input
+              name="password"
+              type="password"
+              required
+              autocomplete="current-password"
+              minlength="8" /></label
+          ><button>Ingresar</button>
+        </form>
+        <button id="recover" type="button">
+          Solicitar enlace para establecer o recuperar contraseña
+        </button>
+        <p class="muted">
+          Solo usuarios invitados por Limpiarte. Se requiere autenticación de
+          dos factores.
+        </p>
+      </section>
+      <section id="password-setup" class="card compact" hidden>
+        <h2>Establecer contraseña</h2>
+        <form id="set-password">
+          <label
+            >Nueva contraseña<input
+              name="password"
+              type="password"
+              minlength="12"
+              maxlength="128"
+              required
+              autocomplete="new-password" /></label
+          ><label
+            >Confirmar contraseña<input
+              name="confirm"
+              type="password"
+              minlength="12"
+              maxlength="128"
+              required
+              autocomplete="new-password" /></label
+          ><button>Guardar contraseña</button>
+        </form>
+      </section>
+      <section id="mfa" class="card compact" hidden>
+        <h2>Verificación de dos factores</h2>
+        <p id="mfa-help"></p>
+        <img
+          id="qr"
+          alt="Código para configurar tu aplicación autenticadora"
+          width="200"
+          height="200"
+          hidden
+        />
+        <p id="secret" class="muted"></p>
+        <form id="verify">
+          <label
+            >Código de tu aplicación<input
+              name="code"
+              inputmode="numeric"
+              pattern="[0-9]{6}"
+              maxlength="6"
+              required
+              autocomplete="one-time-code" /></label
+          ><button>Verificar acceso</button>
+        </form>
+      </section>
+      <div id="workspace" hidden>
+        <nav class="toolbar">
+          <button id="reload">Actualizar solicitudes</button
+          ><a href="#tarifas">Tarifas y configuración ↓</a>
+        </nav>
+        <section class="card">
+          <h2>Solicitudes recientes</h2>
+          <p class="muted">
+            Últimas 100 solicitudes. Abrí el detalle para atender cada consulta.
+          </p>
+          <div id="requests"></div>
+        </section>
+        <section id="tarifas" class="card">
+          <h2>Tarifas y condiciones</h2>
+          <p class="muted">
+            Solo el propietario puede publicar. Cada publicación crea una
+            versión y conserva las anteriores. Los importes son en guaraníes.
+          </p>
+          <form id="config">
+            <div id="services"></div>
+            <details>
+              <summary>Agregar un servicio</summary>
+              <div class="columns">
+                <label
+                  >Identificador (letras sin espacios)<input
+                    id="new-id"
+                    pattern="[a-z0-9-]{1,60}"
+                    maxlength="60" /></label
+                ><label>Nombre<input id="new-name" maxlength="120" /></label>
+              </div>
+              <button id="add-service" type="button">Agregar</button>
+            </details>
+            <h3>Condiciones comerciales</h3>
+            <div id="commercial"></div>
+            <details>
+              <summary>Traslados y cobertura</summary>
+              <p class="muted">
+                Sin ubicación verificada, el traslado siempre requiere
+                confirmación. Esta fase no consulta Google Maps ni acepta
+                kilómetros del navegador.
+              </p>
+              <label
+                >Modalidad<select id="transport-mode">
+                  <option value="city">Ciudad</option>
+                  <option value="distance">Distancia</option>
+                  <option value="hybrid">Híbrido</option>
+                </select></label
+              ><label
+                >Dirección de origen<input id="origin" maxlength="240"
+              /></label>
+              <div class="columns">
+                <label
+                  >Adicional por km<input
+                    id="extra-km"
+                    type="number"
+                    min="0"
+                    max="1000000"
+                    required /></label
+                ><label
+                  >Distancia máxima (km)<input
+                    id="max-km"
+                    type="number"
+                    min="50"
+                    max="1000"
+                    required
+                /></label>
+              </div>
+              <label
+                >Bandas por distancia (JSON)<textarea
+                  id="bands"
+                  rows="5"
+                  spellcheck="false"
+                  required
+                ></textarea></label
+              ><label
+                >Ciudades y reglas (JSON)<textarea
+                  id="cities-config"
+                  rows="8"
+                  spellcheck="false"
+                  required
+                ></textarea>
+              </label>
+              <p class="muted">
+                Reglas: fixed (fija), distance (distancia), manual (evaluación)
+                o excluded (fuera de cobertura). Una tarifa fija requiere
+                approved: true.
+              </p>
+            </details>
+            <label class="check"
+              ><input id="approved" type="checkbox" />Limpiarte confirma y
+              aprueba estas tarifas y condiciones para el cotizador.</label
+            ><button type="submit">Publicar nueva versión</button>
+            <p id="version" class="muted"></p>
+          </form>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <a href="/">Volver al sitio</a><span>Limpiarte · MAFARA S.A.</span>
+    </footer>
+  </body>
+</html>

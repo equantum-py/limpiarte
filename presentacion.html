@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Solicitá tu presupuesto · Limpiarte</title>
+    <link rel="stylesheet" href="/cotizador.css" />
+    <link rel="stylesheet" href="/presentacion.css" />
+    <script type="module" src="/cliente-presentacion.js"></script>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/"
+        ><img
+          src="/assets/logo-limpiarte.png"
+          alt="Limpiarte"
+          width="1500"
+          height="422" /></a
+      ><a href="/">Volver al sitio ↗</a>
+    </header>
+    <div class="demo-notice">
+      Presentación con datos de ejemplo. No envía mensajes ni contrata
+      servicios. Usá información ficticia.
+    </div>
+    <main class="customer-main">
+      <section class="customer-intro">
+        <p class="eyebrow">LIMPIEZA PROFESIONAL PARA TU ESPACIO</p>
+        <h1>Pedí tu presupuesto.<br /><span>Nosotros nos ocupamos.</span></h1>
+        <p>
+          Elegí el servicio y contanos qué necesitás. Nuestro equipo revisará el
+          alcance y el traslado para preparar tu propuesta.
+        </p>
+      </section>
+      <section class="card customer-card">
+        <form id="customer-quote">
+          <div class="columns">
+            <label
+              >¿Qué servicio necesitás?<select
+                name="service"
+                required
+              ></select></label
+            ><label id="customer-quantity-label"
+              >Superficie aproximada (m²)<input
+                name="quantity"
+                type="number"
+                min="1"
+                max="100000"
+                step="0.01"
+                placeholder="Ej.: 100"
+                required
+            /></label>
+          </div>
+          <div class="columns">
+            <label
+              >Ciudad<select name="city">
+                <option>Asunción</option>
+                <option>Luque</option>
+                <option>San Lorenzo</option>
+                <option>Capiatá</option>
+                <option>Otra ubicación</option>
+              </select></label
+            ><label
+              >Dirección o zona (opcional)<input
+                name="address"
+                maxlength="300"
+                placeholder="Barrio o referencia del lugar"
+            /></label>
+          </div>
+          <fieldset id="customer-extras">
+            <legend>¿Necesitás algún complemento?</legend>
+          </fieldset>
+          <label
+            >Algo más que debamos saber (opcional)<textarea
+              name="details"
+              rows="2"
+              maxlength="1000"
+              placeholder="Tipo de espacio, frecuencia o condiciones del lugar"
+            ></textarea></label
+          ><button>Ver estimación ↗</button>
+        </form>
+        <section id="customer-result" hidden aria-live="polite">
+          <h2>Tu estimación</h2>
+          <dl id="customer-summary"></dl>
+          <p class="muted" id="customer-conditions"></p>
+          <form id="customer-send">
+            <div class="columns">
+              <label
+                >Nombre o empresa de ejemplo<input
+                  name="name"
+                  maxlength="100"
+                  placeholder="Empresa de ejemplo"
+                  required /></label
+              ><label
+                >Teléfono de ejemplo (opcional)<input
+                  name="phone"
+                  maxlength="30"
+                  type="tel"
+              /></label>
+            </div>
+            <button>Simular solicitud de presupuesto ↗</button>
+          </form>
+          <div id="customer-success" hidden>
+            <h3>¡Solicitud recibida!</h3>
+            <p id="customer-receipt"></p>
+            <p>
+              En el servicio real, el equipo de Limpiarte se pondrá en contacto
+              para confirmar los detalles.
+            </p>
+            <button id="customer-new" type="button" class="subtle">
+              Preparar otra solicitud
+            </button>
+          </div>
+        </section>
+        <p id="customer-status" role="status" aria-live="polite"></p>
+      </section>
+    </main>
+    <footer>
+      <p>Limpiarte · MAFARA S.A. · +595 994 837779</p>
+      <a
+        id="download-presentation"
+        href="/presentacion-offline.html"
+        download="Limpiarte-cliente.html"
+        >Descargar esta vista</a
+      >
+    </footer>
+  </body>
+</html>
