@@ -22,7 +22,7 @@ export const defaultConfig = {
   })),
   commercial: {
     approved: false,
-    whatsapp: "595994837779",
+    whatsapp: "595994652377",
     discountBps: 0,
     taxBps: 0,
     taxMode: "none",

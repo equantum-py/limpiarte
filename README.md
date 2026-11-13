@@ -14,7 +14,7 @@ VERIFICACIÓN
 - Revisar Inicio, Productos, Servicios y Quiénes somos.
 - Buscar productos y filtrar categorías.
 - Agregar productos al presupuesto, ajustar cantidades y preparar la consulta.
-- Enviar por WhatsApp abre el número +595 994 837779 con el mensaje preparado. El visitante confirma el envío en WhatsApp.
+- Enviar por WhatsApp abre el número +595 994 652377 con el mensaje preparado. El visitante confirma el envío en WhatsApp.
 - Revisar Bases y condiciones y la vista desde un celular.
 
 ARCHIVOS EDITABLES
