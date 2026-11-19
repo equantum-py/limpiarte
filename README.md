@@ -45,3 +45,12 @@ CONEXIÓN A VERCEL
 5. Verificar / para la página y /admin/ para el panel demo.
 Los datos demo pertenecen al navegador y al dominio; no se transfieren automáticamente entre Hostinger y Vercel.
 Hostinger continúa usando index.html y .htaccess; vercel.json solo afecta a Vercel.
+
+
+## Panel de hoy (presentación local)
+
+`/admin/` presenta agenda de servicios, consultas, seguimiento y cobros ficticios en guaraníes. Las acciones solo modifican el estado en memoria y se reinician al recargar. No existe integración de WhatsApp, agenda o pagos ni autenticación nueva. No ingresar datos reales.
+
+El panel anterior se conserva íntegro en `/admin/catalogo.html`, junto con sus claves de almacenamiento existentes. El cotizador continúa en `/admin/cotizador.html`. Los enlaces antiguos con fragmentos del panel redirigen al catálogo.
+
+Para revisar estados: `window.PANEL.go('hoy'|'citas'|'wa'|'fu'|'pay')` y `window.PANEL.setBlockState('citas'|'wa'|'fu'|'pay', 'ok'|'loading'|'error'|'empty')`. Estos controles solo afectan la presentación.
