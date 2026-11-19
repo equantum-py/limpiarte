@@ -54,3 +54,7 @@ Hostinger continúa usando index.html y .htaccess; vercel.json solo afecta a Ver
 El panel anterior se conserva íntegro en `/admin/catalogo.html`, junto con sus claves de almacenamiento existentes. El cotizador continúa en `/admin/cotizador.html`. Los enlaces antiguos con fragmentos del panel redirigen al catálogo.
 
 Para revisar estados: `window.PANEL.go('hoy'|'citas'|'wa'|'fu'|'pay')` y `window.PANEL.setBlockState('citas'|'wa'|'fu'|'pay', 'ok'|'loading'|'error'|'empty')`. Estos controles solo afectan la presentación.
+
+### Navegación unificada
+
+Catálogo y cotizador se muestran dentro de la misma estructura de `/admin/`, con menú, cabecera y tema compartidos. Las vistas se conservan al alternar secciones durante la sesión; no se modifica el almacenamiento existente. Los accesos directos a `catalogo.html` y `cotizador.html` redirigen al panel. Los iframes internos requieren `?embed=1` y usan `tool-theme.css` con el estilo común.
